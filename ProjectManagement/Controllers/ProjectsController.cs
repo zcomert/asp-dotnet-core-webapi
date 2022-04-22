@@ -3,6 +3,7 @@ using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository;
+using Service.Contracts;
 
 namespace ProjectManagement.Controllers
 {
@@ -10,37 +11,18 @@ namespace ProjectManagement.Controllers
     [ApiController]
     public class ProjectsController : ControllerBase
     {
-        private List<Project> _projectList;
-        private ILoggerManager _logger;
-        private IRepositoryManager _repository;
+        private IServiceManager _service;
 
-        public ProjectsController(ILoggerManager logger, IRepositoryManager repository)
+        public ProjectsController(IServiceManager service)
         {
-            _logger = logger; // DI
-            _repository = repository;
-            _projectList = new List<Project>
-            {
-                new Project { Id = Guid.NewGuid(), Name ="Project 1"},
-                new Project { Id = Guid.NewGuid(), Name ="Project 2"},
-                new Project { Id = Guid.NewGuid(), Name ="Project 3"}
-            };
+            _service = service;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            try
-            {
-                _logger.LogInfo("Projects.Get() has been run.");
-                var list = _repository.Project.GetAllProjects(false);
-                return Ok(list);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("Projects.Get() has been crashed : " + ex.Message);
-                throw;
-            }
-
+            var list = _service.ProjectService.GetAllProjects(false);
+            return Ok(list);
         }
     }
 }
