@@ -2,6 +2,7 @@
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Repository;
 
 namespace ProjectManagement.Controllers
 {
@@ -11,10 +12,12 @@ namespace ProjectManagement.Controllers
     {
         private List<Project> _projectList;
         private ILoggerManager _logger;
+        private IRepositoryManager _repository;
 
-        public ProjectsController(ILoggerManager logger)
+        public ProjectsController(ILoggerManager logger, IRepositoryManager repository)
         {
             _logger = logger; // DI
+            _repository = repository;
             _projectList = new List<Project>
             {
                 new Project { Id = Guid.NewGuid(), Name ="Project 1"},
@@ -29,7 +32,8 @@ namespace ProjectManagement.Controllers
             try
             {
                 _logger.LogInfo("Projects.Get() has been run.");
-                return Ok(_projectList);
+                var list = _repository.Project.GetAllProjects(false);
+                return Ok(list);
             }
             catch (Exception ex)
             {

@@ -32,5 +32,9 @@ namespace ProjectManagement.Extensions
                 project => project.MigrationsAssembly("ProjectManagement"))
             );
         }
+
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+
     }
 }

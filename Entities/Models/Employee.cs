@@ -6,7 +6,7 @@ namespace Entities.Models
     public class Employee
     {
         [Column("EmployeeId")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required(ErrorMessage = "FirstName is required.")]
         public string FirstName { get; set; }
 
@@ -15,7 +15,7 @@ namespace Entities.Models
 
         public int? Age { get; set; }
         public string? Position { get; set; }
-        
+
         [ForeignKey(nameof(Project))]
         public Guid? ProjectId { get; set; }  /* FK */
         public Project Project { get; set; } /* Navigation property */
