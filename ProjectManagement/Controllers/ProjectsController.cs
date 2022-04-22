@@ -9,8 +9,11 @@ namespace ProjectManagement.Controllers
     public class ProjectsController : ControllerBase
     {
         private List<Project> _projectList;
-        public ProjectsController()
+        private ILogger<ProjectsController> _logger;
+
+        public ProjectsController(ILogger<ProjectsController> logger)
         {
+            _logger = logger;
             _projectList = new List<Project>
             {
                 new Project { Id = Guid.NewGuid(), Name ="Project 1"},
@@ -22,7 +25,17 @@ namespace ProjectManagement.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_projectList);
+            try
+            {
+                _logger.LogInformation("Projects.Get() has been run.");
+                return Ok(_projectList);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Projects.Get() has been crashed : " + ex.Message);
+                throw;
+            }
+
         }
     }
 }
