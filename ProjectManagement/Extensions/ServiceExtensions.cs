@@ -1,4 +1,7 @@
-﻿namespace ProjectManagement.Extensions
+﻿using Contracts;
+using LoggerService;
+
+namespace ProjectManagement.Extensions
 {
     public static class ServiceExtensions
     {
@@ -12,6 +15,11 @@
                     .AllowAnyHeader()
                 );
             });
+        }
+
+        public static void ConfigureLoggerManager(this IServiceCollection services)
+        {
+            services.AddSingleton<ILoggerManager, LoggerManager>();
         }
     }
 }
