@@ -9,7 +9,7 @@ LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nl
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureCors();
@@ -17,6 +17,10 @@ builder.Services.ConfigureLoggerManager();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
+
+builder.Services.AddControllers()
+    .AddApplicationPart(typeof(ProjectManagement.Presentation.AssemblyReference).Assembly);
+
 
 var app = builder.Build();
 
