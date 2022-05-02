@@ -26,7 +26,6 @@ namespace ProjectManagement.Presentation.Controllers
         [HttpGet("{id:guid}")]
         public IActionResult GetOneProjectById(Guid id)
         {
-            throw new Exception("Exception...");
             var project = _service.ProjectService.GetOneProjectById(id, false);
             return Ok(project);
         }
