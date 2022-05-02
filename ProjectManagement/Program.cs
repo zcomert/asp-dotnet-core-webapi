@@ -18,6 +18,8 @@ builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(ProjectManagement.Presentation.AssemblyReference).Assembly);
 

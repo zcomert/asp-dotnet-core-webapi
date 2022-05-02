@@ -35,7 +35,7 @@ namespace ProjectManagement.Presentation.Controllers
         {
             try
             {
-                Project project = _service.ProjectService.GetOneProjectById(id, false);
+                var project = _service.ProjectService.GetOneProjectById(id, false);
                 return Ok(project);
             }
             catch
