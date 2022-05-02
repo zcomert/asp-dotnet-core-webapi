@@ -19,30 +19,16 @@ namespace ProjectManagement.Presentation.Controllers
         [HttpGet]
         public IActionResult GetAllProjects()
         {
-            try
-            {
-                var projects = _service.ProjectService.GetAllProjects(false);
-                return Ok(projects);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Internal server error!");
-            }
+            var projects = _service.ProjectService.GetAllProjects(false);
+            return Ok(projects);
         }
 
         [HttpGet("{id:guid}")]
         public IActionResult GetOneProjectById(Guid id)
         {
-            try
-            {
-                var project = _service.ProjectService.GetOneProjectById(id, false);
-                return Ok(project);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal error");
-            }
-
+            throw new Exception("Exception...");
+            var project = _service.ProjectService.GetOneProjectById(id, false);
+            return Ok(project);
         }
     }
 }
