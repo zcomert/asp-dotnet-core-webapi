@@ -1,4 +1,5 @@
 ﻿
+using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 
@@ -27,6 +28,21 @@ namespace ProjectManagement.Presentation.Controllers
             {
                 return StatusCode(500, "Internal server error!");
             }
+        }
+
+        [HttpGet("{id:guid}")]
+        public IActionResult GetOneProjectById(Guid id)
+        {
+            try
+            {
+                Project project = _service.ProjectService.GetOneProjectById(id, false);
+                return Ok(project);
+            }
+            catch
+            {
+                return StatusCode(500, "Internal error");
+            }
+
         }
     }
 }

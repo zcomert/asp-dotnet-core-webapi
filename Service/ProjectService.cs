@@ -30,5 +30,18 @@ namespace Service
             }
 
         }
+
+        public Project GetOneProjectById(Guid id, bool trackChanges)
+        {
+            try
+            {
+                return _repository.Project.GetOneProjectById(id, trackChanges);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("ProjectRepository.GetProject() : " + ex.Message);
+                throw;
+            }
+        }
     }
 }
