@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects
 {
-    //[Serializable]
     public record ProjectDto
     {
         public Guid Id { get; init; }
@@ -14,5 +13,7 @@ namespace Shared.DataTransferObjects
         public string Description { get; init; }
         public string Field { get; init; }
     };
+
     
+
 }

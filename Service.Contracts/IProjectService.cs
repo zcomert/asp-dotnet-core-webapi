@@ -7,5 +7,6 @@ namespace Service.Contracts
     {
         IEnumerable<ProjectDto> GetAllProjects(bool trackChanges);
         ProjectDto GetOneProjectById(Guid id, bool trackChanges);
+        ProjectDto CreateOneProject(ProjectDtoForCreation projectDto);
     }
 }
