@@ -9,8 +9,10 @@ namespace ProjectManagement.Utilities.Mapping
         public MappingProfile()
         {
             CreateMap<Project, ProjectDto>().ReverseMap();
-            CreateMap<Employee, EmployeeDto>();
             CreateMap<ProjectDtoForCreation, Project>();
+
+            CreateMap<Employee, EmployeeDto>().ReverseMap();
+            CreateMap<EmployeeDtoForCreation, Employee>();
         }
     }
 }
